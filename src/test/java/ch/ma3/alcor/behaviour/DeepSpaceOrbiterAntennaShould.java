@@ -2,7 +2,8 @@ package ch.ma3.alcor.behaviour;
 
 import org.junit.jupiter.api.Test;
 
-import static ch.ma3.alcor.behaviour.CameraDirection.BACKWARD;
+import static ch.ma3.alcor.behaviour.CameraDirection.EARTH;
+import static ch.ma3.alcor.behaviour.CameraDirection.MARS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -18,10 +19,10 @@ public class DeepSpaceOrbiterAntennaShould {
      * The antenna and camera can point in the same direction
      * The camera can only record if the antenna faces a planet
      * Te camera should record the closest planet as long as possible
-     *     (thus the camera should directly start recording after launch)
-     *     (thus the camera should record earth and after half way record mars)
+     * (thus the camera should directly start recording after launch)
+     * (thus the camera should record earth and after half way record mars)
      * The camera can  record 2x100km worth of flight and when it's full it has to transmit
-     *     (the camera recording can not be interrupted, it will alway record 100km worth of footage)
+     * (the camera recording can not be interrupted, it will alway record 100km worth of footage)
      * The camera should face the closest planet
      * The antenna should transmit if it's facing earth if the camera has recorded something
      * with 100mW
@@ -30,30 +31,30 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * The navigationsystem will tell the orbiter current time and distance from the planets.
      * <p>
-     *                         LEFT
-     *                     [         ]
+     * LEFT
+     * [         ]
      * o          BACKWARD [ Orbiter ]  FORWARD         O
      * Earth               [         ]                  Mars
-     *
-     *  <---------------395.04 million km ------------->
+     * <p>
+     * <---------------395.04 million km ------------->
      */
 
-    @Test // First degree of Freedom, only camera
-    void startWithCameraBackward() {
+    @Test
+    void startWithCameraFacingEarth() {
         Orbiter orbiter = new Orbiter();
 
         CameraDirection cameraAngle = orbiter.getCameraDirection();
 
-        assertThat(cameraAngle, equalTo(BACKWARD));
+        assertThat(cameraAngle, equalTo(EARTH));
     }
 
     @Test
-    void startDirectlyRecordingAfterLaunch() {
+    void recordEarthUntilHalfway() {
         Orbiter orbiter = new Orbiter();
 
-        boolean recording = orbiter.isRecording();
+        orbiter.updateDistance(395);
 
-        assertThat(recording, equalTo(true));
+        assertThat(orbiter.getCameraDirection(), equalTo(MARS));
     }
 
 
