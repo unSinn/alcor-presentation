@@ -65,7 +65,7 @@ public class DeepSpaceOrbiterAntennaShould {
             "198, MARS",
             "395, MARS",
     })
-    void recordEarthUntilHalfway(int mkm, CameraDirection cameraDirection) {
+    void pointCameraTowardsEarthUntilHalfway(int mkm, CameraDirection cameraDirection) {
         orbiter.updateDistance(mkm);
 
         assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
