@@ -2,7 +2,7 @@ package ch.ma3.alcor.behaviour;
 
 import org.junit.jupiter.api.Test;
 
-import static ch.ma3.alcor.behaviour.CameraAngle.BACK;
+import static ch.ma3.alcor.behaviour.CameraAngle.BACKWARD;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -28,24 +28,19 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * <p>
      * The navigationsystem will tell the orbiter current time and distance from the planets.
-     *
-     *
-     *
-     *                      [         ]
-     *  o          BACKWARD [ ORBITER ]  FORWARD         O
-     *  Earth               [         ]                  Mars
-     *
-     *
-     *
+     * <p>
+     * [         ]
+     * o          BACKWARD [ Orbiter ]  FORWARD         O
+     * Earth               [         ]                  Mars
      */
 
     @Test
-    void startWithCameraAt0() {
+    void startWithCameraBackward() {
         Orbiter orbiter = new Orbiter();
 
         CameraAngle cameraAngle = orbiter.getCameraAngle();
 
-        assertThat(cameraAngle, equalTo(BACK));
+        assertThat(cameraAngle, equalTo(BACKWARD));
     }
 
 

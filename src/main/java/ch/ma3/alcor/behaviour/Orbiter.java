@@ -5,7 +5,7 @@ import static ch.ma3.alcor.behaviour.CameraAngle.*;
 public class Orbiter {
 
     public CameraAngle getCameraAngle() {
-        return BACK;
+        return BACKWARD;
     }
 
 }
