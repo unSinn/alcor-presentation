@@ -82,12 +82,10 @@ public class DeepSpaceOrbiterAntennaShould {
     }
 
     @Test
-    void recordSomething() {
-        orbiter.updateDistance(0);
+    void recordEarthAfterLaunch() {
         orbiter.record();
 
-        orbiter.updateDistance(1);
-        assertThat(orbiter.getRecord(), notNullValue());
+        assertThat(orbiter.getRecord(), hasItemInArray(EARTH));
     }
 
 

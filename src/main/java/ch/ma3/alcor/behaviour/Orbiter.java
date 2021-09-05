@@ -24,7 +24,7 @@ public class Orbiter {
     public void record() {
     }
 
-    public String getRecord() {
-        return "E";
+    public CameraDirection[] getRecord() {
+        return new CameraDirection[]{EARTH};
     }
 }
