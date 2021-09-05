@@ -18,6 +18,6 @@ public class Orbiter {
     }
 
     public CameraDirection getAntennaDirection() {
-        return null;
+        return MARS;
     }
 }

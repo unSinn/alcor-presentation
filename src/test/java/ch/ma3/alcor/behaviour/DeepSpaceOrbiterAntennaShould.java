@@ -76,5 +76,10 @@ public class DeepSpaceOrbiterAntennaShould {
         assertThat(orbiter.getCameraDirection(), not(equalTo(orbiter.getAntennaDirection())));
     }
 
+    @Test
+    void startWithAntennaPointingInADirection() {
+        assertThat(orbiter.getAntennaDirection(), notNullValue());
+    }
+
 
 }
