@@ -1,10 +1,10 @@
 package ch.ma3.alcor.behaviour;
 
-import static ch.ma3.alcor.behaviour.CameraAngle.*;
+import static ch.ma3.alcor.behaviour.CameraDirection.*;
 
 public class Orbiter {
 
-    public CameraAngle getCameraAngle() {
+    public CameraDirection getCameraDirection() {
         return BACKWARD;
     }
 

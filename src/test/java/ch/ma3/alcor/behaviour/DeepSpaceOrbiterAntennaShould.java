@@ -2,7 +2,7 @@ package ch.ma3.alcor.behaviour;
 
 import org.junit.jupiter.api.Test;
 
-import static ch.ma3.alcor.behaviour.CameraAngle.BACKWARD;
+import static ch.ma3.alcor.behaviour.CameraDirection.BACKWARD;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -19,6 +19,7 @@ public class DeepSpaceOrbiterAntennaShould {
      * The camera can only record if the antenna faces a planet
      * Te camera should record the closest planet as long as possible
      *     (thus the camera should directly start recording after launch)
+     *     (thus the camera should record earth and after half way record mars)
      * The camera can  record 2x100km worth of flight and when it's full it has to transmit
      *     (the camera recording can not be interrupted, it will alway record 100km worth of footage)
      * The camera should face the closest planet
@@ -41,13 +42,13 @@ public class DeepSpaceOrbiterAntennaShould {
     void startWithCameraBackward() {
         Orbiter orbiter = new Orbiter();
 
-        CameraAngle cameraAngle = orbiter.getCameraAngle();
+        CameraDirection cameraAngle = orbiter.getCameraDirection();
 
         assertThat(cameraAngle, equalTo(BACKWARD));
     }
 
     @Test
-    void startDirectlyRecording() {
+    void startDirectlyRecordingAfterLaunch() {
         Orbiter orbiter = new Orbiter();
 
         boolean recording = orbiter.isRecording();
