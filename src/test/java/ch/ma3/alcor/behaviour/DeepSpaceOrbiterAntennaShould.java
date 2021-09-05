@@ -15,12 +15,9 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * The Orbiter starts with its camera point to BACKWARD and its antenna FORWARD
      * <p>
-     * The Orbiter should turn its antenna towards Earth at a distance of 10km from earth and keep it oriented that way
-     * <p>
-     * The Orbiter should turn its camera towards Earth and after 20000km towards Mars
-     * <p>
      * The antenna and camera can point in the same direction
      * The camera can only record if the antenna faces a planet
+     * Te camera should record the closest planet as long as possible
      * The camera can only record 10km worth of flight and when it's full it has to transmit
      * The antenna should transmit if it's facing earth if the camera has recorded something
      * with 100mW
