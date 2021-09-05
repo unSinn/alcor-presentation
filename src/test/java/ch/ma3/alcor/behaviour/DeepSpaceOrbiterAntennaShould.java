@@ -1,6 +1,8 @@
 package ch.ma3.alcor.behaviour;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static ch.ma3.alcor.behaviour.CameraDirection.EARTH;
 import static ch.ma3.alcor.behaviour.CameraDirection.MARS;
@@ -21,8 +23,8 @@ public class DeepSpaceOrbiterAntennaShould {
      * Te camera should record the closest planet as long as possible
      * (thus the camera should directly start recording after launch)
      * (thus the camera should record earth and after half way record mars)
-     * The camera can  record 2x100km worth of flight and when it's full it has to transmit
-     * (the camera recording can not be interrupted, it will alway record 100km worth of footage)
+     * The camera can  record 2x1 Mkm worth of flight and when it's full it has to transmit
+     * (the camera recording can not be interrupted, it will alway record 1M km worth of footage)
      * The camera should face the closest planet
      * The antenna should transmit if it's facing earth if the camera has recorded something
      * with 100mW
@@ -48,14 +50,22 @@ public class DeepSpaceOrbiterAntennaShould {
         assertThat(cameraAngle, equalTo(EARTH));
     }
 
-    @Test
-    void recordEarthUntilHalfway() {
+    @ParameterizedTest
+    @CsvSource({
+            "0, EARTH",
+            "1, EARTH",
+            "197, EARTH",
+            "198, MARS",
+            "395, MARS",
+    })
+    void recordEarthUntilHalfway(int mkm, CameraDirection cameraDirection) {
         Orbiter orbiter = new Orbiter();
 
-        orbiter.updateDistance(395);
+        orbiter.updateDistance(mkm);
 
-        assertThat(orbiter.getCameraDirection(), equalTo(MARS));
+        assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
     }
+
 
 
 }
