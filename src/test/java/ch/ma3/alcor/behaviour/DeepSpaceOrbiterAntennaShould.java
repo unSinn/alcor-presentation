@@ -18,7 +18,7 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * The Orbiter starts with its camera point to BACKWARD and its antenna FORWARD
      * <p>
-     * The antenna and camera can point in the same direction
+     * The antenna and camera can not point in the same direction
      * The camera can only record if the antenna faces a planet
      * Te camera should record the closest planet as long as possible
      * (thus the camera should directly start recording after launch)
@@ -66,6 +66,12 @@ public class DeepSpaceOrbiterAntennaShould {
         assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
     }
 
+    @Test
+    void startWithAntennaAndCameraNotFacingTheSameDirection() {
+        Orbiter orbiter = new Orbiter();
+
+        assertThat(orbiter.getCameraDirection(), not(equalTo(orbiter.getAntennaDirection())));
+    }
 
 
 }

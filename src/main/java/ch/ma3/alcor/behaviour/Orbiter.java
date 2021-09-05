@@ -16,4 +16,8 @@ public class Orbiter {
     public void updateDistance(int i) {
         distance = i;
     }
+
+    public CameraDirection getAntennaDirection() {
+        return null;
+    }
 }
