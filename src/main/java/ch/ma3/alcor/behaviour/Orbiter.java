@@ -8,4 +8,7 @@ public class Orbiter {
         return BACKWARD;
     }
 
+    public boolean isRecording() {
+        return true;
+    }
 }

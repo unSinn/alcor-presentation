@@ -18,7 +18,10 @@ public class DeepSpaceOrbiterAntennaShould {
      * The antenna and camera can point in the same direction
      * The camera can only record if the antenna faces a planet
      * Te camera should record the closest planet as long as possible
-     * The camera can only record 10km worth of flight and when it's full it has to transmit
+     *     (thus the camera should directly start recording after launch)
+     * The camera can  record 2x100km worth of flight and when it's full it has to transmit
+     *     (the camera recording can not be interrupted, it will alway record 100km worth of footage)
+     * The camera should face the closest planet
      * The antenna should transmit if it's facing earth if the camera has recorded something
      * with 100mW
      * and after 20 km with 200mW
@@ -26,18 +29,30 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * The navigationsystem will tell the orbiter current time and distance from the planets.
      * <p>
-     * [         ]
+     *                         LEFT
+     *                     [         ]
      * o          BACKWARD [ Orbiter ]  FORWARD         O
      * Earth               [         ]                  Mars
+     *
+     *  <---------------395.04 million km ------------->
      */
 
-    @Test
+    @Test // First degree of Freedom, only camera
     void startWithCameraBackward() {
         Orbiter orbiter = new Orbiter();
 
         CameraAngle cameraAngle = orbiter.getCameraAngle();
 
         assertThat(cameraAngle, equalTo(BACKWARD));
+    }
+
+    @Test
+    void startDirectlyRecording() {
+        Orbiter orbiter = new Orbiter();
+
+        boolean recording = orbiter.isRecording();
+
+        assertThat(recording, equalTo(true));
     }
 
 
