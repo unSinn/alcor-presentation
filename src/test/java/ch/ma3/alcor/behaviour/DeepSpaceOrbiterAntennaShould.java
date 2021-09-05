@@ -1,5 +1,6 @@
 package ch.ma3.alcor.behaviour;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,6 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class DeepSpaceOrbiterAntennaShould {
+
 
     /**
      * 2D Space for simplicity
@@ -41,10 +43,15 @@ public class DeepSpaceOrbiterAntennaShould {
      * <---------------395.04 million km ------------->
      */
 
+    private Orbiter orbiter;
+
+    @BeforeEach
+    void setUp() {
+        orbiter = new Orbiter();
+    }
+
     @Test
     void startWithCameraFacingEarth() {
-        Orbiter orbiter = new Orbiter();
-
         CameraDirection cameraAngle = orbiter.getCameraDirection();
 
         assertThat(cameraAngle, equalTo(EARTH));
@@ -59,8 +66,6 @@ public class DeepSpaceOrbiterAntennaShould {
             "395, MARS",
     })
     void recordEarthUntilHalfway(int mkm, CameraDirection cameraDirection) {
-        Orbiter orbiter = new Orbiter();
-
         orbiter.updateDistance(mkm);
 
         assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
@@ -68,8 +73,6 @@ public class DeepSpaceOrbiterAntennaShould {
 
     @Test
     void startWithAntennaAndCameraNotFacingTheSameDirection() {
-        Orbiter orbiter = new Orbiter();
-
         assertThat(orbiter.getCameraDirection(), not(equalTo(orbiter.getAntennaDirection())));
     }
 
