@@ -20,4 +20,11 @@ public class Orbiter {
     public CameraDirection getAntennaDirection() {
         return MARS;
     }
+
+    public void record() {
+    }
+
+    public String getRecord() {
+        return "E";
+    }
 }

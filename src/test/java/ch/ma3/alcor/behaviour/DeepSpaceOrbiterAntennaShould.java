@@ -26,7 +26,7 @@ public class DeepSpaceOrbiterAntennaShould {
      * (thus the camera should directly start recording after launch)
      * (thus the camera should record earth and after half way record mars)
      * The camera can  record 2x1 Mkm worth of flight and when it's full it has to transmit
-     * (the camera recording can not be interrupted, it will alway record 1M km worth of footage)
+     * (the camera recording can not be interrupted, it will always record 1M km worth of footage)
      * The camera should face the closest planet
      * The antenna should transmit if it's facing earth if the camera has recorded something
      * with 100mW
@@ -79,6 +79,15 @@ public class DeepSpaceOrbiterAntennaShould {
     @Test
     void startWithAntennaPointingInADirection() {
         assertThat(orbiter.getAntennaDirection(), notNullValue());
+    }
+
+    @Test
+    void recordSomething() {
+        orbiter.updateDistance(0);
+        orbiter.record();
+
+        orbiter.updateDistance(1);
+        assertThat(orbiter.getRecord(), notNullValue());
     }
 
 
