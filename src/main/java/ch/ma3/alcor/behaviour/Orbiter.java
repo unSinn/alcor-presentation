@@ -33,7 +33,7 @@ public class Orbiter {
     }
 
 
-    public void record() {
+    private void record() {
         records.add(cameraDirection);
     }
 
