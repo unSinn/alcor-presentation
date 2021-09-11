@@ -20,14 +20,6 @@ public class Orbiter {
         cameraDirection = EARTH;
     }
 
-    public Direction getCameraDirection() {
-        return cameraDirection;
-    }
-
-    public Direction getAntennaDirection() {
-        return MARS;
-    }
-
     public void updateDistance(int newDistance) {
         distance = newDistance;
         if (distance > (DISTANCE_TO_MARS / 2)) {

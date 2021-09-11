@@ -52,37 +52,6 @@ public class DeepSpaceOrbiterAntennaShould {
     }
 
     @Test
-    void startWithCameraFacingEarth() {
-        Direction cameraAngle = orbiter.getCameraDirection();
-
-        assertThat(cameraAngle, equalTo(EARTH));
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, EARTH",
-            "1, EARTH",
-            "197, EARTH",
-            "198, MARS",
-            "395, MARS",
-    })
-    void pointCameraTowardsEarthUntilHalfway(int mkm, Direction cameraDirection) {
-        orbiter.updateDistance(mkm);
-
-        assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
-    }
-
-    @Test
-    void startWithAntennaAndCameraNotFacingTheSameDirection() {
-        assertThat(orbiter.getCameraDirection(), not(equalTo(orbiter.getAntennaDirection())));
-    }
-
-    @Test
-    void startWithAntennaPointingInADirection() {
-        assertThat(orbiter.getAntennaDirection(), notNullValue());
-    }
-
-    @Test
     void recordEarthAfterLaunch() {
         orbiter.updateDistance(1);
         assertThat(orbiter.getRecord(), hasItemInArray(EARTH));
