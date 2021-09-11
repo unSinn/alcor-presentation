@@ -38,6 +38,8 @@ public class Orbiter {
     }
 
     public Direction[] getRecord() {
+        if (!canTransmitVideo())
+            throw new IllegalStateException("Antenna faces the wrong way");
         return records.toArray(new Direction[]{});
     }
 

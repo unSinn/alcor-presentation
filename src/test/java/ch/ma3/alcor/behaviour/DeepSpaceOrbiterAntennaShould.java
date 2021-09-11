@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static ch.ma3.alcor.behaviour.Direction.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -75,5 +76,14 @@ public class DeepSpaceOrbiterAntennaShould {
         orbiter.updateDistance(1);
         assertThat(orbiter.canTransmitVideo(), is(false));
     }
+
+    @Test
+    void shouldThrowException_IfTryingToTransmitAndUnableTo() {
+        orbiter.updateDistance(1);
+        assertThatThrownBy(() -> orbiter.getRecord())
+                .isInstanceOf(Exception.class)
+                .hasMessageContaining("Antenna faces the wrong way");
+    }
+
 
 }
