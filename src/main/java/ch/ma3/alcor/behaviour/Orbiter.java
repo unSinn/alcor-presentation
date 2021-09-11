@@ -7,6 +7,7 @@ import static ch.ma3.alcor.behaviour.CameraDirection.*;
 
 public class Orbiter {
 
+    public static final int DISTANCE_TO_MARS = 395;
     private int distance;
 
     private CameraDirection cameraDirection;
@@ -23,7 +24,7 @@ public class Orbiter {
 
     public void updateDistance(int newDistance) {
         distance = newDistance;
-        if (distance > (395 / 2)) {
+        if (distance > (DISTANCE_TO_MARS / 2)) {
             cameraDirection = MARS;
         } else {
             cameraDirection = EARTH;
