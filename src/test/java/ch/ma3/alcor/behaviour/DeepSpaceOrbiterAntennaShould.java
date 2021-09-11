@@ -25,7 +25,7 @@ public class DeepSpaceOrbiterAntennaShould {
      * (thus the camera should record Earth and after half way record Mars)
      * The camera can  record 2x1 Mkm worth of flight and when it's full it has to transmit
      * (the camera recording can not be interrupted, it will always record 1M km worth of footage)
-     * The antenna should try transmit if it's facing earth if the camera has recorded something (and the camera is not recording)
+     * The antenna should try to transmit if it's facing earth if the camera has recorded something (and the camera is not recording)
      * The camera should no longer record if it is full and should instead turn away for the antenna to transmit.
      * with 100mW
      * and after 20 km with 200mW
@@ -39,6 +39,9 @@ public class DeepSpaceOrbiterAntennaShould {
      * Earth               [         ]                  Mars
      * <p>
      * <---------------395.04 million km ------------->
+     * <p>
+     * For simplificaiton distance is equal to time
+     * Every Mkm = 1h recording
      */
 
     private Orbiter orbiter;
@@ -91,5 +94,11 @@ public class DeepSpaceOrbiterAntennaShould {
         assertThat(orbiter.getRecord(), hasItemInArray(MARS));
     }
 
+    @Test
+    void transmitTwoRecordsAfter2mkm() {
+        orbiter.updateDistance(1);
+        orbiter.updateDistance(2);
+        assertThat(orbiter.getRecord(), is(new CameraDirection[]{EARTH, EARTH}));
+    }
 
 }
