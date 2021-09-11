@@ -28,6 +28,7 @@ public class Orbiter {
         } else {
             cameraDirection = EARTH;
         }
+        record();
     }
 
     public CameraDirection getAntennaDirection() {
