@@ -11,7 +11,6 @@ public class Orbiter {
 
     public static final int DISTANCE_TO_MARS = 395;
     private Device directionEarthSlot;
-    private int distance;
 
     private Direction cameraDirection;
     private final Recordings recordings;
@@ -21,8 +20,7 @@ public class Orbiter {
         directionEarthSlot = CAMERA;
     }
 
-    public void updateDistance(int newDistance) {
-        distance = newDistance;
+    public void updateDistance(int distance) {
         if (distance > (DISTANCE_TO_MARS / 2)) {
             cameraDirection = MARS;
             directionEarthSlot = ANTENNA;
