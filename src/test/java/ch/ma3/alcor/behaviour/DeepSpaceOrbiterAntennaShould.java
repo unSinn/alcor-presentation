@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static ch.ma3.alcor.behaviour.CameraDirection.*;
+import static ch.ma3.alcor.behaviour.Direction.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -40,8 +40,8 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * <---------------395.04 million km ------------->
      * <p>
-     * For simplificaiton distance is equal to time
-     * Every Mkm = 1h recording
+     * For simplificaiton distance is equal to time: Every Mkm = 1h recording
+     * The orbiter can always receive/communicate, the antenna is only required for transmitting "HD Video Recordings".
      */
 
     private Orbiter orbiter;
@@ -53,7 +53,7 @@ public class DeepSpaceOrbiterAntennaShould {
 
     @Test
     void startWithCameraFacingEarth() {
-        CameraDirection cameraAngle = orbiter.getCameraDirection();
+        Direction cameraAngle = orbiter.getCameraDirection();
 
         assertThat(cameraAngle, equalTo(EARTH));
     }
@@ -66,7 +66,7 @@ public class DeepSpaceOrbiterAntennaShould {
             "198, MARS",
             "395, MARS",
     })
-    void pointCameraTowardsEarthUntilHalfway(int mkm, CameraDirection cameraDirection) {
+    void pointCameraTowardsEarthUntilHalfway(int mkm, Direction cameraDirection) {
         orbiter.updateDistance(mkm);
 
         assertThat(orbiter.getCameraDirection(), equalTo(cameraDirection));
@@ -98,7 +98,13 @@ public class DeepSpaceOrbiterAntennaShould {
     void transmitTwoRecordsAfter2mkm() {
         orbiter.updateDistance(1);
         orbiter.updateDistance(2);
-        assertThat(orbiter.getRecord(), is(new CameraDirection[]{EARTH, EARTH}));
+        assertThat(orbiter.getRecord(), is(new Direction[]{EARTH, EARTH}));
+    }
+
+    @Test
+    void beUnableToTransmit_ifAntennaFacesTheWrongWay() {
+        orbiter.updateDistance(1);
+        assertThat(orbiter.canTransmitVideo(), is(false));
     }
 
 }

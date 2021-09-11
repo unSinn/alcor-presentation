@@ -1,5 +1,5 @@
 package ch.ma3.alcor.behaviour;
 
-public enum CameraDirection {
+public enum Direction {
     EARTH, MARS
 }
