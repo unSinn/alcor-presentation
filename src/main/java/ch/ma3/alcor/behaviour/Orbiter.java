@@ -1,11 +1,10 @@
 package ch.ma3.alcor.behaviour;
 
 
-import java.util.LinkedList;
-
-import static ch.ma3.alcor.behaviour.Device.*;
 import static ch.ma3.alcor.behaviour.Device.ANTENNA;
-import static ch.ma3.alcor.behaviour.Direction.*;
+import static ch.ma3.alcor.behaviour.Device.CAMERA;
+import static ch.ma3.alcor.behaviour.Direction.EARTH;
+import static ch.ma3.alcor.behaviour.Direction.MARS;
 
 public class Orbiter {
 
