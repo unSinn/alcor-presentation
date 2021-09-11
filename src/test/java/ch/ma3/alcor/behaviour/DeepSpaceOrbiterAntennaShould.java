@@ -53,12 +53,6 @@ public class DeepSpaceOrbiterAntennaShould {
     }
 
     @Test
-    void recordEarthAfterLaunch() {
-        orbiter.updateDistance(1);
-        assertThat(orbiter.getRecord(), hasItemInArray(EARTH));
-    }
-
-    @Test
     void recordMarsAfterHalfway() {
         orbiter.updateDistance(390);
         assertThat(orbiter.getRecord(), hasItemInArray(MARS));
@@ -83,6 +77,13 @@ public class DeepSpaceOrbiterAntennaShould {
         assertThatThrownBy(() -> orbiter.getRecord())
                 .isInstanceOf(Exception.class)
                 .hasMessageContaining("Antenna faces the wrong way");
+    }
+
+    @Test
+    void beBeReadyToTransmit_ifStorageFull() {
+        orbiter.updateDistance(1);
+        orbiter.updateDistance(2);
+        assertThat(orbiter.canTransmitVideo(), is(true));
     }
 
 

@@ -30,6 +30,9 @@ public class Orbiter {
             cameraDirection = EARTH;
         }
         record();
+        if (records.size() == 2) {
+            directionEarthSlot = ANTENNA;
+        }
     }
 
 
