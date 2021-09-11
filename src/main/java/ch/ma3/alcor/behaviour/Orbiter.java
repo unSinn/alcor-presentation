@@ -14,10 +14,10 @@ public class Orbiter {
     private int distance;
 
     private Direction cameraDirection;
-
-    private final LinkedList<Direction> records = new LinkedList<>();
+    private final Recordings recordings;
 
     public Orbiter() {
+        recordings = new Recordings();
         directionEarthSlot = CAMERA;
     }
 
@@ -30,20 +30,20 @@ public class Orbiter {
             cameraDirection = EARTH;
         }
         record();
-        if (records.size() == 2) {
+        if (recordings.isFull()) {
             directionEarthSlot = ANTENNA;
         }
     }
 
 
     private void record() {
-        records.add(cameraDirection);
+        recordings.add(cameraDirection);
     }
 
     public Direction[] getRecord() {
         if (!canTransmitVideo())
             throw new IllegalStateException("Antenna faces the wrong way");
-        return records.toArray(new Direction[]{});
+        return recordings.getRecords();
     }
 
     public boolean canTransmitVideo() {
