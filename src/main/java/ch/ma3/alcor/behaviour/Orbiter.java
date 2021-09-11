@@ -1,20 +1,33 @@
 package ch.ma3.alcor.behaviour;
 
+
+import java.util.LinkedList;
+
 import static ch.ma3.alcor.behaviour.CameraDirection.*;
 
 public class Orbiter {
 
     private int distance;
 
-    public CameraDirection getCameraDirection() {
-        if (distance > 395.04 / 2) {
-            return MARS;
-        }
-        return EARTH;
+    private CameraDirection cameraDirection;
+
+    private final LinkedList<CameraDirection> records = new LinkedList<>();
+
+    public Orbiter(){
+        cameraDirection = EARTH;
     }
 
-    public void updateDistance(int i) {
-        distance = i;
+    public CameraDirection getCameraDirection() {
+        return cameraDirection;
+    }
+
+    public void updateDistance(int newDistance) {
+        distance = newDistance;
+        if (distance > (395 / 2)) {
+            cameraDirection = MARS;
+        } else {
+            cameraDirection = EARTH;
+        }
     }
 
     public CameraDirection getAntennaDirection() {
@@ -22,9 +35,10 @@ public class Orbiter {
     }
 
     public void record() {
+        records.add(cameraDirection);
     }
 
     public CameraDirection[] getRecord() {
-        return new CameraDirection[]{EARTH};
+        return records.toArray(new CameraDirection[]{});
     }
 }

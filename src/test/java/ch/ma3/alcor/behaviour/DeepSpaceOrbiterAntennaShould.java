@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static ch.ma3.alcor.behaviour.CameraDirection.EARTH;
-import static ch.ma3.alcor.behaviour.CameraDirection.MARS;
+import static ch.ma3.alcor.behaviour.CameraDirection.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -86,6 +85,15 @@ public class DeepSpaceOrbiterAntennaShould {
         orbiter.record();
 
         assertThat(orbiter.getRecord(), hasItemInArray(EARTH));
+    }
+
+    @Test
+    void recordMarsAfterHalfway() {
+        orbiter.updateDistance(390);
+
+        orbiter.record();
+
+        assertThat(orbiter.getRecord(), hasItemInArray(MARS));
     }
 
 
