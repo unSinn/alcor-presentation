@@ -34,8 +34,8 @@ public class DeepSpaceOrbiterAntennaShould {
      * <p>
      * The navigationsystem will tell the orbiter current time and distance from the planets.
      * <p>
-     * LEFT
-     * [         ]
+     *
+     *                     [         ]
      * o          BACKWARD [ Orbiter ]  FORWARD         O
      * Earth               [         ]                  Mars
      * <p>
